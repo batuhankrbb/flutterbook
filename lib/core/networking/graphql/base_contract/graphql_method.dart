@@ -1,0 +1,4 @@
+enum GraphQLMethod{
+  query,
+  mutation
+}

@@ -1,0 +1,4 @@
+
+class ResponseTypes {
+  ResponseTypes._();
+}
