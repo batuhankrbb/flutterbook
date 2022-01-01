@@ -1,4 +1,4 @@
 
-class ResponseTypes {
-  ResponseTypes._();
+class CustomResponseTypes {
+  CustomResponseTypes._();
 }

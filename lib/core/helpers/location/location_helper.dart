@@ -1,9 +1,7 @@
-import '../../custom_types/custom_failure/custom_failure.dart';
 import '../../custom_types/result_type/result_type.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'geo_coder_helper.dart';
-
 
 class LocationHelper {
   LocationHelper._();
@@ -16,24 +14,21 @@ class LocationHelper {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      return Result.failure(
-          CustomFailure(messsage: "Location services are disabled."));
+      return Result.failure("Location services are disabled.");
     }
 
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        return Result.failure(
-            CustomFailure(messsage: "Location permissions are denied"));
+        return Result.failure("Location permissions are denied");
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
       await Geolocator.openLocationSettings();
-      return Result.failure(CustomFailure(
-          messsage:
-              "Location permissions are permanently denied, we cannot request permissions."));
+      return Result.failure(
+              "Location permissions are permanently denied, we cannot request permissions.");
     }
 
     var position = await Geolocator.getCurrentPosition();
@@ -56,7 +51,7 @@ class LocationHelper {
                 "${placeMark.administrativeArea}$commaAdmin${placeMark.subAdministrativeArea}$commaSubAdmin${placeMark.isoCountryCode}");
         return Result.success(info);
       } else {
-        return Result.failure(CustomFailure(messsage: "Something went wrong."));
+        return Result.failure("Something went wrong.");
       }
     }, failure: (failure) {
       return Result.failure(failure);

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../custom_types/custom_failure/custom_failure.dart';
 import '../custom_types/screen_result_type/screen_result_type.dart';
 
 import 'loading_screen.dart';
@@ -19,7 +18,7 @@ class ScreenResultBuilder<T> extends StatelessWidget {
   final Widget? initialWidget;
   final Widget? loadingWidget;
   final Widget Function(T data) completedWidget;
-  final Widget Function(CustomFailure failure) failureWidget;
+  final Widget Function(String failure) failureWidget;
   final bool isSmallLoading;
 
   @override

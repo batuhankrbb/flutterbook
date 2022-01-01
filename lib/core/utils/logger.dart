@@ -1,4 +1,3 @@
-import '../custom_types/custom_failure/custom_failure.dart';
 import 'package:logger/logger.dart';
 
 class LogHelper {
@@ -26,12 +25,12 @@ class LogHelper {
    if (_debugMode)   _logger.wtf(message);
   }
 
-  CustomFailure getError(
+  String getError(
       {String? errorMessage,
       required String errorCode,
       required String methodCode}) {
     var errorText = errorMessage ?? "Something went wrong.";
     errorPrint("ERROR OCCURED -> Code: $errorCode$methodCode");
-    return CustomFailure(messsage: "$errorText | Code: $errorCode$methodCode");
+    return "$errorText | Code: $errorCode$methodCode";
   }
 }

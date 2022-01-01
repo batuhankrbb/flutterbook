@@ -23,9 +23,9 @@ class _$ScreenResultTearOff {
     );
   }
 
-  _Failed<T> failed<T>(CustomFailure failure) {
+  _Failed<T> failed<T>(String failureMessage) {
     return _Failed<T>(
-      failure,
+      failureMessage,
     );
   }
 
@@ -46,7 +46,7 @@ mixin _$ScreenResult<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) completed,
-    required TResult Function(CustomFailure failure) failed,
+    required TResult Function(String failureMessage) failed,
     required TResult Function() loading,
     required TResult Function() initial,
   }) =>
@@ -54,7 +54,7 @@ mixin _$ScreenResult<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(T data)? completed,
-    TResult Function(CustomFailure failure)? failed,
+    TResult Function(String failureMessage)? failed,
     TResult Function()? loading,
     TResult Function()? initial,
   }) =>
@@ -62,7 +62,7 @@ mixin _$ScreenResult<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T data)? completed,
-    TResult Function(CustomFailure failure)? failed,
+    TResult Function(String failureMessage)? failed,
     TResult Function()? loading,
     TResult Function()? initial,
     required TResult orElse(),
@@ -178,7 +178,7 @@ class _$_Completed<T> implements _Completed<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) completed,
-    required TResult Function(CustomFailure failure) failed,
+    required TResult Function(String failureMessage) failed,
     required TResult Function() loading,
     required TResult Function() initial,
   }) {
@@ -189,7 +189,7 @@ class _$_Completed<T> implements _Completed<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(T data)? completed,
-    TResult Function(CustomFailure failure)? failed,
+    TResult Function(String failureMessage)? failed,
     TResult Function()? loading,
     TResult Function()? initial,
   }) {
@@ -200,7 +200,7 @@ class _$_Completed<T> implements _Completed<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T data)? completed,
-    TResult Function(CustomFailure failure)? failed,
+    TResult Function(String failureMessage)? failed,
     TResult Function()? loading,
     TResult Function()? initial,
     required TResult orElse(),
@@ -262,7 +262,7 @@ abstract class _Completed<T> implements ScreenResult<T> {
 abstract class _$FailedCopyWith<T, $Res> {
   factory _$FailedCopyWith(_Failed<T> value, $Res Function(_Failed<T>) then) =
       __$FailedCopyWithImpl<T, $Res>;
-  $Res call({CustomFailure failure});
+  $Res call({String failureMessage});
 }
 
 /// @nodoc
@@ -276,13 +276,13 @@ class __$FailedCopyWithImpl<T, $Res> extends _$ScreenResultCopyWithImpl<T, $Res>
 
   @override
   $Res call({
-    Object? failure = freezed,
+    Object? failureMessage = freezed,
   }) {
     return _then(_Failed<T>(
-      failure == freezed
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as CustomFailure,
+      failureMessage == freezed
+          ? _value.failureMessage
+          : failureMessage // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -290,27 +290,29 @@ class __$FailedCopyWithImpl<T, $Res> extends _$ScreenResultCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$_Failed<T> implements _Failed<T> {
-  const _$_Failed(this.failure);
+  const _$_Failed(this.failureMessage);
 
   @override
-  final CustomFailure failure;
+  final String failureMessage;
 
   @override
   String toString() {
-    return 'ScreenResult<$T>.failed(failure: $failure)';
+    return 'ScreenResult<$T>.failed(failureMessage: $failureMessage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Failed<T> &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+            (identical(other.failureMessage, failureMessage) ||
+                const DeepCollectionEquality()
+                    .equals(other.failureMessage, failureMessage)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(failureMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -321,35 +323,35 @@ class _$_Failed<T> implements _Failed<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) completed,
-    required TResult Function(CustomFailure failure) failed,
+    required TResult Function(String failureMessage) failed,
     required TResult Function() loading,
     required TResult Function() initial,
   }) {
-    return failed(failure);
+    return failed(failureMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(T data)? completed,
-    TResult Function(CustomFailure failure)? failed,
+    TResult Function(String failureMessage)? failed,
     TResult Function()? loading,
     TResult Function()? initial,
   }) {
-    return failed?.call(failure);
+    return failed?.call(failureMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T data)? completed,
-    TResult Function(CustomFailure failure)? failed,
+    TResult Function(String failureMessage)? failed,
     TResult Function()? loading,
     TResult Function()? initial,
     required TResult orElse(),
   }) {
     if (failed != null) {
-      return failed(failure);
+      return failed(failureMessage);
     }
     return orElse();
   }
@@ -393,9 +395,9 @@ class _$_Failed<T> implements _Failed<T> {
 }
 
 abstract class _Failed<T> implements ScreenResult<T> {
-  const factory _Failed(CustomFailure failure) = _$_Failed<T>;
+  const factory _Failed(String failureMessage) = _$_Failed<T>;
 
-  CustomFailure get failure => throw _privateConstructorUsedError;
+  String get failureMessage => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$FailedCopyWith<T, _Failed<T>> get copyWith =>
       throw _privateConstructorUsedError;
@@ -441,7 +443,7 @@ class _$_Loading<T> implements _Loading<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) completed,
-    required TResult Function(CustomFailure failure) failed,
+    required TResult Function(String failureMessage) failed,
     required TResult Function() loading,
     required TResult Function() initial,
   }) {
@@ -452,7 +454,7 @@ class _$_Loading<T> implements _Loading<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(T data)? completed,
-    TResult Function(CustomFailure failure)? failed,
+    TResult Function(String failureMessage)? failed,
     TResult Function()? loading,
     TResult Function()? initial,
   }) {
@@ -463,7 +465,7 @@ class _$_Loading<T> implements _Loading<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T data)? completed,
-    TResult Function(CustomFailure failure)? failed,
+    TResult Function(String failureMessage)? failed,
     TResult Function()? loading,
     TResult Function()? initial,
     required TResult orElse(),
@@ -556,7 +558,7 @@ class _$_Initial<T> implements _Initial<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) completed,
-    required TResult Function(CustomFailure failure) failed,
+    required TResult Function(String failureMessage) failed,
     required TResult Function() loading,
     required TResult Function() initial,
   }) {
@@ -567,7 +569,7 @@ class _$_Initial<T> implements _Initial<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(T data)? completed,
-    TResult Function(CustomFailure failure)? failed,
+    TResult Function(String failureMessage)? failed,
     TResult Function()? loading,
     TResult Function()? initial,
   }) {
@@ -578,7 +580,7 @@ class _$_Initial<T> implements _Initial<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T data)? completed,
-    TResult Function(CustomFailure failure)? failed,
+    TResult Function(String failureMessage)? failed,
     TResult Function()? loading,
     TResult Function()? initial,
     required TResult orElse(),
