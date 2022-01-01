@@ -7,22 +7,22 @@ class LogHelper {
 
   final _logger = Logger();
 
-  final _debugMode = false;
+  final debugMode = false;
 
   void debugPrint(String message) {
-    if (_debugMode) _logger.d(message);
+    if (debugMode) _logger.d(message);
   }
 
   void warningPrint(String message) {
-    if (_debugMode)  _logger.w(message);
+    if (debugMode)  _logger.w(message);
   }
 
   void errorPrint(String message) {
-   if (_debugMode)   _logger.e(message);
+   if (debugMode)   _logger.e(message);
   }
 
   void whatTheFuckPrint(String message) {
-   if (_debugMode)   _logger.wtf(message);
+   if (debugMode)   _logger.wtf(message);
   }
 
   String getError(

@@ -4,9 +4,7 @@ import '../contracts/base_network_model.dart';
 class NetworkDecoder {
   NetworkDecoder._();
 
-  static var shared = NetworkDecoder._();
-
-  K decode<T extends BaseNetworkModel, K>(
+ static K decode<T extends BaseNetworkModel, K>(
       {required Response<dynamic> response, required T responseType}) {
     try {
       if (response.data is List) {
