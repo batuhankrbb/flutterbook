@@ -1,0 +1,5 @@
+You must add them to the main.dart file before you can use it. 
+
+initialRoute: '/onboard',
+onGenerateRoute: NavigationRoute.instance.generateRoute,
+navigatorKey: NavigationService.instance.navigatorKey,
